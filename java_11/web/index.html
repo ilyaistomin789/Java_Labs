@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Sss header form</title>
+    <script>
+        async function sssXMLSubmitAction() {
+            await fetch('http://localhost:8080/java_11/SssXml', {
+                headers:
+                    {
+                        'XRand-N': +document.getElementById('n_value').value,
+                    },
+
+            }).then(response => response.text())
+                .then(xmlDocString => document.getElementById("xml_result").value = xmlParser(xmlDocString));
+        }
+
+        async function sssJSONSubmitAction() {
+            await fetch('http://localhost:8080/java_11/SssJson', {
+                headers:
+                    {
+                        'XRand-N': +document.getElementById('n_value').value,
+                    },
+
+            }).then(response => response.json())
+                .then(jsonRes => document.getElementById("json_result").value = jsonParser(jsonRes));
+        }
+
+        async function sssHeaderSubmitAction() {
+            await fetch('http://localhost:8080/java_11/SssHeader', {
+                headers:
+                    {
+                        'Value_x': +document.getElementById('x_value').value,
+                        'Value_y': +document.getElementById('y_value').value
+                    },
+
+            }).then(result => document.getElementById('z_value').value = +result.headers.get('Value_z'))
+        }
+
+        const xmlParser = (xmlDoc) => {
+            const xmlObj = new DOMParser().parseFromString(xmlDoc, 'text/xml');
+            const result = [];
+            const numTag = xmlObj.getElementsByTagName("num");
+            for (let i = 0; i < numTag.length; i++) {
+                result.push(numTag[i].childNodes[0].nodeValue);
+            }
+            return result.join(',');
+        }
+        const jsonParser = (jsonObj) => {
+            const result = [];
+            jsonObj.rand.forEach(s => result.push(s.num));
+            return result.join(',');
+        }
+    </script>
+</head>
+<body>
+<p>GET Z</p>
+<form method="get" onsubmit="return false">
+    <label>
+        x
+        <input type="number" id="x_value"/>
+    </label>
+    <br/>
+    <label>
+        y
+        <input type="number" id="y_value"/>
+    </label>
+    <br/>
+    <label>
+        z
+        <input type="number" id="z_value"/>
+    </label>
+    <br/>
+    <input type="button" onclick="sssHeaderSubmitAction()" value="Submit">
+    <br/>
+</form>
+<p>GET XML/JSON</p>
+
+<form method="get" onsubmit="return false">
+    <label>
+        n
+        <input type="number" id="n_value"/>
+    </label>
+    <br/>
+    <label>
+        XML result
+        <input type="text" id="xml_result"/>
+    </label>
+    <br/>
+    <input type="button" onclick="sssXMLSubmitAction()" value="Submit">
+    <br/>
+    <label>
+        JSON result
+        <input type="text" id="json_result"/>
+    </label>
+    <br/>
+    <input type="button" onclick="sssJSONSubmitAction()" value="Submit">
+</form>
+</body>
+</html>

@@ -1,0 +1,6 @@
+2021-11-02 at 22:07:30 MSK L1 contextInitialized
+2021-11-02 at 22:07:51 MSK file: word1.docx
+2021-11-03 at 08:26:47 MSK L1 contextInitialized
+2021-11-03 at 08:34:09 MSK L1 contextInitialized
+2021-11-03 at 08:37:44 MSK file: word3.docx
+2021-11-03 at 08:44:05 MSK L1 contextDestroyed

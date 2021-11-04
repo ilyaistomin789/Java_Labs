@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Sss header form</title>
+    <script>
+        async function sssXMLSubmitAction() {
+            const xhr = new XMLHttpRequest();
+            xhr.open("GET", 'http://localhost:8080/java_11/SssXml', true);
+            xhr.onreadystatechange = () => {
+                if (xhr.readyState === 4) {
+                    if (xhr.status === 200) {
+                        document.getElementById("xml_result").value = xmlParser(xhr.responseXML);
+                    }
+                }
+            }
+            xhr.setRequestHeader('XRand-N', document.getElementById('n_value').value)
+            xhr.send();
+        }
+
+        function sssJSONSubmitAction() {
+            const xhr = new XMLHttpRequest();
+            xhr.open("GET", 'http://localhost:8080/java_11/SssJson', true);
+            xhr.onreadystatechange = () => {
+                if (xhr.readyState === 4) {
+                    if (xhr.status === 200) {
+                        document.getElementById("json_result").value = jsonParser(xhr.responseText);
+                    }
+                }
+            }
+            xhr.setRequestHeader('XRand-N', document.getElementById('n_value').value)
+            xhr.send();
+        }
+
+        function sssHeaderSubmitAction() {
+            const xhr = new XMLHttpRequest();
+            xhr.open("GET", 'http://localhost:8080/java_11/SssHeader', true);
+            xhr.onreadystatechange = () => {
+                if (xhr.readyState === 4) {
+                    if (xhr.status === 200) {
+                        document.getElementById('z_value').value = xhr.getResponseHeader("Value_z");
+                    } else alert("status = " +
+                        xhr.status + "\n" + xhr.statusText);
+                }
+            };
+            xhr.setRequestHeader('Value_x', document.getElementById('x_value').value);
+            xhr.setRequestHeader('Value_y', document.getElementById('y_value').value);
+            xhr.send();
+
+        }
+
+        const xmlParser = (xmlDoc) => {
+            const result = [];
+            const numTag = xmlDoc.getElementsByTagName("num");
+            for (let i = 0; i < numTag.length; i++) {
+                result.push(numTag[i].childNodes[0].nodeValue);
+            }
+            return result.join(',');
+        }
+        const jsonParser = (jsonString) =>
+        {
+            const jsonObj = JSON.parse(jsonString)
+            const result = [];
+            jsonObj.rand.forEach(s => result.push(s.num));
+            return result.join(',');
+        }
+    </script>
+</head>
+<body>
+<p>GET Z</p>
+<form method="get" onsubmit="return false">
+    <label>
+        x
+        <input type="number" id="x_value"/>
+    </label>
+    <br/>
+    <label>
+        y
+        <input type="number" id="y_value"/>
+    </label>
+    <br/>
+    <label>
+        z
+        <input type="number" id="z_value"/>
+    </label>
+    <br/>
+    <input type="button" onclick="sssHeaderSubmitAction()" value="Submit">
+    <br/>
+</form>
+<p>GET XML/JSON</p>
+
+<form method="get" onsubmit="return false">
+    <label>
+        n
+        <input type="number" id="n_value"/>
+    </label>
+    <br/>
+    <label>
+        XML result
+        <input type="text" id="xml_result"/>
+    </label>
+    <br/>
+    <input type="button" onclick="sssXMLSubmitAction()" value="Submit">
+    <br/>
+    <label>
+        JSON result
+        <input type="text" id="json_result"/>
+    </label>
+    <br/>
+    <input type="button" onclick="sssJSONSubmitAction()" value="Submit">
+</form>
+</body>
+</html>

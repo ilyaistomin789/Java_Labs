@@ -1,0 +1,30 @@
+<project name="AS_88888" default = "copy" >
+    <target name="init">
+        <echo message="AS_88888" />
+        <property name = "server"
+                  value = "C:\Program Files\apache-tomcat-9.0.52\" />
+        <property name = "work"
+                  value = "D:\education\Fourth_Course\Java\java_2\" />
+    </target>
+    <target name="create" depends ="init">
+        <delete dir= "${server}webapps\AS_88888\" />
+        <mkdir dir= "${server}webapps\AS_88888\" />
+        <mkdir dir= "${server}webapps\AS_88888\WEB-INF" />
+        <mkdir dir= "${server}webapps\AS_88888\WEB-INF\classes" />
+    </target>
+
+    <target name="compile" depends ="create">
+
+        <javac srcdir = "${work}src"
+               destdir = "${server}webapps\AS_88888\WEB-INF\classes"
+               classpath = "${server}lib\servlet-api.jar"/>
+    </target>
+
+
+    <target name="copy" depends ="compile">
+        <copy file= "${work}web\WEB-INF\web.xml"
+              todir="${server}webapps\AS_88888\WEB-INF\" />
+        <copy file= "${work}src\views\index.html"
+              todir="${server}webapps\AS_88888\" />
+    </target>
+</project>

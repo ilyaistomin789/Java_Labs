@@ -1,0 +1,42 @@
+<?xml version="1.0"?>
+<project name="java_14" default="deploy">
+    <property name="src" location="../java_14/src"/>
+    <property name="web" location="../java_14/web"/>
+    <property name="war" location="../java_14/war"/>
+    <property name="classes" location="../java_14/build/classes"/>
+
+    <property name="tomcat" location="C:\Program Files\apache-tomcat-10.0.10\"/>
+
+    <target name="clean">
+        <delete dir="${war}"/>
+        <delete dir="${classes}"/>
+    </target>
+
+    <target name="init" depends="clean">
+        <mkdir dir="${war}"/>
+        <mkdir dir="${classes}"/>
+    </target>
+
+    <path id="classpath">
+        <pathelement location="${src}/"/>
+        <fileset dir="${tomcat}/" includes="**/*.jar"/>
+    </path>
+
+    <target name="build" depends="init">
+        <javac includeantruntime="false"
+               destdir="../java_14/build/classes"
+               srcdir="src">
+            <classpath refid="classpath"/>
+        </javac>
+        <war destfile="${war}/java_14.war" webxml="../java_14/web/WEB-INF/web.xml">
+            <fileset dir="${web}"/>
+            <classes dir="../java_14/build/classes"/>
+        </war>
+    </target>
+
+    <target name="deploy" depends="build">
+        <copy file="${war}/java_14.war" todir="${tomcat}/webapps"/>
+        <exec executable="${tomcat}/bin/shutdown.bat"/>
+        <exec executable="${tomcat}/bin/startup.bat"/>
+    </target>
+</project>

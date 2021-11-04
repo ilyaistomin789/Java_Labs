@@ -1,0 +1,81 @@
+<project name="AS_88888" default = "copy" >
+    <target name="init">
+        <echo message="Building java_1 Project" />
+    </target>
+
+<!--    for local server-->
+
+
+
+<!--    <target name="create" depends ="init">-->
+<!--        <delete dir= "C:\Program Files\apache-tomcat-9.0.52\webapps\AS_88888\" />-->
+<!--        <mkdir dir= "C:\Program Files\apache-tomcat-9.0.52\webapps\AS_88888\" />-->
+<!--        <mkdir dir= "C:\Program Files\apache-tomcat-9.0.52\webapps\AS_88888\WEB-INF" />-->
+<!--    </target>-->
+
+<!--    <target name="copy" depends ="create">-->
+<!--        <copy file= "D:\education\Fourth_Course\Java\java_1\web\WEB-INF\web.xml"-->
+<!--              todir="C:\Program Files\apache-tomcat-9.0.52\webapps\AS_88888\WEB-INF\" />-->
+<!--        <copy file= "D:\education\Fourth_Course\Java\java_1\src\views\index.html"-->
+<!--              todir="C:\Program Files\apache-tomcat-9.0.52\webapps\AS_88888\" />-->
+<!--    </target>-->
+
+
+
+<!--    for remote server-->
+
+
+
+<!--    <target name="create" depends ="init">-->
+<!--        <delete dir= "Z:\webapps\AS_88888\" />-->
+<!--        <mkdir dir= "Z:\webapps\AS_88888\" />-->
+<!--        <mkdir dir= "Z:\webapps\AS_88888\WEB-INF" />-->
+
+<!--    </target>-->
+
+<!--    <target name="copy" depends ="create">-->
+<!--        <copy file= "D:\education\Fourth_Course\Java\java_1\web\WEB-INF\web.xml"-->
+<!--              todir="Z:\webapps\AS_88888\WEB-INF\" />-->
+<!--        <copy file= "D:\education\Fourth_Course\Java\java_1\src\views\index.html"-->
+<!--              todir="Z:\webapps\AS_88888\" />-->
+<!--    </target>-->
+
+
+
+
+
+<!--config for local and remote servers-->
+
+
+
+    <target name="create" depends ="init">
+        <delete dir= "Z:\webapps\AS_88888\" />
+        <mkdir dir= "Z:\webapps\AS_88888\" />
+        <mkdir dir= "Z:\webapps\AS_88888\WEB-INF" />
+        <delete dir= "C:\Program Files\apache-tomcat-9.0.52\webapps\AS_88888\" />
+        <mkdir dir= "C:\Program Files\apache-tomcat-9.0.52\webapps\AS_88888\" />
+        <mkdir dir= "C:\Program Files\apache-tomcat-9.0.52\webapps\AS_88888\WEB-INF" />
+    </target>
+    <target name="copy" depends ="create">
+        <copy file= "D:\education\Fourth_Course\Java\java_1\web\WEB-INF\web.xml"
+              todir="Z:\webapps\AS_88888\WEB-INF\" />
+        <copy file= "D:\education\Fourth_Course\Java\java_1\src\views\index.html"
+              todir="Z:\webapps\AS_88888\" />
+        <copy file= "D:\education\Fourth_Course\Java\java_1\src\views\address.html"
+              todir="Z:\webapps\AS_88888\" />
+        <copy file= "D:\education\Fourth_Course\Java\java_1\src\views\education.html"
+              todir="Z:\webapps\AS_88888\" />
+        <copy file= "D:\education\Fourth_Course\Java\java_1\web\WEB-INF\web.xml"
+              todir="C:\Program Files\apache-tomcat-9.0.52\webapps\AS_88888\WEB-INF\" />
+        <copy file= "D:\education\Fourth_Course\Java\java_1\src\views\index.html"
+              todir="C:\Program Files\apache-tomcat-9.0.52\webapps\AS_88888\" />
+        <copy file= "D:\education\Fourth_Course\Java\java_1\src\views\address.html"
+              todir="C:\Program Files\apache-tomcat-9.0.52\webapps\AS_88888\" />
+        <copy file= "D:\education\Fourth_Course\Java\java_1\src\views\education.html"
+              todir="C:\Program Files\apache-tomcat-9.0.52\webapps\AS_88888\" />
+<!--        Image-->
+        <copy file= "D:\education\Fourth_Course\Java\java_1\src\images\java.jpg"
+              todir="C:\Program Files\apache-tomcat-9.0.52\webapps\AS_88888\" />
+    </target>
+
+</project>

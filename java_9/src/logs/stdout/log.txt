@@ -1,0 +1,10 @@
+2021-10-19 at 21:37:41 MSK L1 contextInitialized
+2021-10-19 at 21:38:03 MSK L2 contextDestroyed
+2021-10-19 at 21:44:05 MSK L1 contextInitialized
+2021-10-19 at 21:44:24 MSK L2 attributeAdded
+2021-10-19 at 21:44:24 MSK L2 attributeReplaced
+2021-10-19 at 21:44:37 MSK L2 attributeRemoved
+2021-10-19 at 21:44:37 MSK L2 contextDestroyed
+2021-10-20 at 09:00:01 MSK L1 contextInitialized
+2021-10-20 at 09:00:57 MSK L2 attributeAdded
+2021-10-20 at 09:00:57 MSK L2 attributeReplaced

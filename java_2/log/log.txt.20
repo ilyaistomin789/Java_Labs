@@ -1,0 +1,14 @@
+сент. 10, 2021 8:43:21 AM servlets.Sss <init>
+INFO: Sss:constructor()
+сент. 10, 2021 8:43:21 AM servlets.Sss init
+INFO: Sss:init()
+сент. 10, 2021 8:43:21 AM servlets.Sss doGet
+INFO: Sss:service()
+сент. 10, 2021 8:43:25 AM servlets.Sss doGet
+INFO: Sss:service()
+сент. 10, 2021 8:43:37 AM servlets.Sss doPost
+INFO: Sss:service()
+сент. 10, 2021 8:43:47 AM servlets.Sss doPost
+INFO: Sss:service()
+сент. 14, 2021 11:05:04 PM servlets.Sss destroy
+INFO: Sss:destroy()
